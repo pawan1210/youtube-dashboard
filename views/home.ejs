@@ -24,10 +24,17 @@
         <div style="margin-left: 85%;">
           <% if(videos) { %>
             Sort By -
-            <select name="cars" id="cars" style="height: 30px; width: 60px;" onchange="location = this.value;">
-              <option value="/?search_query=<%= search_query %>&page=<%= page %>&sort_by=<%= sort_by %>">Date</option>
-              <option value="/?search_query=<%= search_query %>&page=<%= page %>&sort_by=title">Title</option>
-            </select>
+            <% if(sort_by==="date"){ %>
+              <select name="cars" id="cars" style="height: 30px; width: 60px;" onchange="location = this.value;">
+                <option value="/?search_query=<%= search_query %>&page=<%= page %>&sort_by=date" selected>Date</option>
+                <option value="/?search_query=<%= search_query %>&page=<%= page %>&sort_by=title">Title</option>
+              </select>
+            <% }else{ %> 
+              <select name="cars" id="cars" style="height: 30px; width: 60px;" onchange="location = this.value;">
+                <option value="/?search_query=<%= search_query %>&page=<%= page %>&sort_by=date" >Date</option>
+                <option value="/?search_query=<%= search_query %>&page=<%= page %>&sort_by=title" selected>Title</option>
+              </select>
+            <% } %>  
             <% } %>
         </div>
         <ul class="video-list featured">

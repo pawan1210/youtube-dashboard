@@ -18,9 +18,9 @@ async function getPaginatedResults(search_query, page, sort_by) {
       var videos = await db.SearchResult.find({
         $text: { $search: search_query },
       })
-        .sort({ publishedAt: -1 })
         .skip((page - 1) * 6)
         .limit(6)
+        .sort({ publishedAt: -1 })
         .then((result) => {
           return result;
         });
@@ -30,9 +30,9 @@ async function getPaginatedResults(search_query, page, sort_by) {
       var videos = await db.SearchResult.find({
         $text: { $search: search_query },
       })
-        .sort({ title: 1 })
         .skip((page - 1) * 6)
         .limit(6)
+        .sort({ title: 1 })
         .then((result) => {
           return result;
         });
@@ -44,13 +44,15 @@ async function getPaginatedResults(search_query, page, sort_by) {
 
 function fetchResults() {
   request.get(generateApiUrl(), (error, response, body) => {
-    if (body) {
-      let result = JSON.parse(body).items.map((item) => {
-        item.snippet.thumbnail = item.snippet.thumbnails.high.url;
-        return item.snippet;
-      });
-      db.SearchResult.insertMany(result);
-    }
+    try {
+      if (body) {
+        let result = JSON.parse(body).items.map((item) => {
+          item.snippet.thumbnail = item.snippet.thumbnails.high.url;
+          return item.snippet;
+        });
+        db.SearchResult.insertMany(result);
+      }
+    } catch {}
   });
 }
 
