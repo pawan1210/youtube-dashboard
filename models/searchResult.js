@@ -3,13 +3,15 @@ var mongoose = require("mongoose");
 var searchResultSchema = new mongoose.Schema({
   title: {
     type: String,
+    trim: true,
     required: true,
   },
   description: {
     type: String,
+    trim: true,
     required: true,
   },
-  thumbnail_url: {
+  thumbnail: {
     type: String,
     required: true,
   },
@@ -18,6 +20,7 @@ var searchResultSchema = new mongoose.Schema({
     required: true,
   },
 });
+searchResultSchema.index({ title: "text" });
 
 var SearchResult = mongoose.model("SearchResult", searchResultSchema);
 
