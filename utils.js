@@ -44,12 +44,13 @@ async function getPaginatedResults(search_query, page, sort_by) {
 
 function fetchResults() {
   request.get(generateApiUrl(), (error, response, body) => {
-    console.log(JSON.parse(body));
-    let result = JSON.parse(body).items.map((item) => {
-      item.snippet.thumbnail = item.snippet.thumbnails.high.url;
-      return item.snippet;
-    });
-    db.SearchResult.insertMany(result);
+    if (body) {
+      let result = JSON.parse(body).items.map((item) => {
+        item.snippet.thumbnail = item.snippet.thumbnails.high.url;
+        return item.snippet;
+      });
+      db.SearchResult.insertMany(result);
+    }
   });
 }
 

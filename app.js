@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const db = require("./models");
 const utils = require("./utils");
-// setInterval(fetchResults, 10000);
+setInterval(utils.fetchResults, 10000);
 
 dotenv.config();
 app.use(bodyParser.json());
