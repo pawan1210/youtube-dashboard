@@ -21,7 +21,6 @@ app.get("/", async (req, res) => {
     page,
     sort_by
   );
-  console.log(req.query.sort_by);
   res.render("home", {
     videos: videos,
     search_query: req.query.search_query,

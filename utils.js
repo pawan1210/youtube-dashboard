@@ -24,6 +24,14 @@ async function getPaginatedResults(search_query, page, sort_by) {
         .then((result) => {
           return result;
         });
+    } else {
+      var videos = await db.SearchResult.find()
+        .skip((page - 1) * 6)
+        .limit(6)
+        .sort({ publishedAt: -1 })
+        .then((result) => {
+          return result;
+        });
     }
   } else if (sort_by === "title") {
     if (search_query) {
@@ -33,6 +41,14 @@ async function getPaginatedResults(search_query, page, sort_by) {
         .skip((page - 1) * 6)
         .limit(6)
         .sort({ title: 1 })
+        .then((result) => {
+          return result;
+        });
+    } else {
+      var videos = await db.SearchResult.find()
+        .skip((page - 1) * 6)
+        .limit(6)
+        .sort({ publishedAt: -1 })
         .then((result) => {
           return result;
         });
