@@ -7,8 +7,8 @@ let ROOT_API_URL =
 
 function generateApiUrl() {
   ROOT_API_URL += "&key=" + process.env.API_KEY;
-  //   ROOT_API_URL +=
-  //     "&publishedAfter=" + new Date(Date.now() - 10000).toISOString();
+  ROOT_API_URL +=
+    "&publishedAfter=" + new Date(Date.now() - 10000).toISOString();
   return ROOT_API_URL;
 }
 
