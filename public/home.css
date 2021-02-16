@@ -28,6 +28,9 @@
   transition: width 450ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
   overflow: hidden;
 }
+.search a {
+  margin-left: auto;
+}
 .search__input {
   flex-grow: 1;
   border: none;
