@@ -42,4 +42,10 @@ $ npm install
 
 # Start the application on localhost:3000
 @ node app.js
+
+# Setup the Environment Variables
+API_KEY=<API KEY>
+MONGO_URL=<DATABASE URL>
 ```
+
+
